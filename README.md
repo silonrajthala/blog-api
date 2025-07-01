@@ -23,7 +23,7 @@ A Laravel 12 API for managing users, posts, categories with roles, permissions, 
 
 ```bash
 git clone https://github.com/silonrajthala/blog-api.git
-cd blog-management-system
+cd blog-api
 ```
 ### 2. Install dependencies
 ```bash
@@ -87,3 +87,5 @@ php artisan serve
 | Vue Tips   | Backend tricks  | test@example.com  | Backend       |
 
 ---
+
+# FOR DOCUMENT OF API CHECK ApiDocuments.md
