@@ -14,34 +14,33 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    // More secure routes to follow (posts, categories, etc.)
-});
 
-
-Route::middleware('auth:sanctum')->group(function () {
+    //posts
     Route::get('/posts', [PostController::class, 'index']);
     Route::post('/posts', [PostController::class, 'store']);
     Route::get('/posts/{post}', [PostController::class, 'show']);
     Route::put('/posts/{post}', [PostController::class, 'update']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
-});
 
+    Route::get('/posts-export', [PostController::class, 'export']);
 
+    Route::post('/posts-import', [PostController::class, 'import']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
+    //catagories
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+
+    Route::get('/categories-export', [CategoryController::class, 'export']);
+
+    Route::post('/categories-import', [CategoryController::class, 'import']);
+
 });
 
-Route::get('/categories-export', [CategoryController::class, 'export']);
 
-Route::post('/categories-import', [CategoryController::class, 'import']);
 
 Route::get('/public/posts', [PublicPostController::class, 'index']);
 
-Route::get('/posts-export', [PostController::class, 'export']);
 
-Route::post('/posts-import', [PostController::class, 'import']);
 
 
