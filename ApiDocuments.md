@@ -309,38 +309,7 @@ None
 ```
 
 
-## 12. Update Category
-
-**PUT** `/api/categories/{id}`
-
-### Request Headers
- Accept: application/json   
- Authorization: Bearer {token}  
- Content-Type: application/json
-
-### Request Body
-
-```json
-{
-  "name": "Updated Category Name",
-  "slug": "updated-category-slug"
-}
-```
-
-### Response (200 OK)
-```json
-{
-  "message": "Category updated successfully",
-  "data": {
-    "id": 2,
-    "name": "Updated Category Name",
-    "slug": "updated-category-slug"
-  }
-}
-
-```
-
-## 13. Delete Category
+## 12. Delete Category
 
 **DELETE** `/api/categories/{id}`
 
@@ -356,4 +325,4 @@ None
 }
 ```
 
-## Import/Export
+## -- Import/Export
