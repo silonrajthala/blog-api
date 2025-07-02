@@ -60,6 +60,7 @@ class PostController extends Controller
     }
     public function export()
     {
+
         if (!auth()->user()->hasAnyPermission(['post-create', 'post-edit', 'post-delete'])) {
             abort(403);
         }
@@ -69,6 +70,7 @@ class PostController extends Controller
 
     public function import(Request $request)
     {
+        
         if (!auth()->user()->can('post-create')) {
             abort(403);
         }

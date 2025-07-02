@@ -46,13 +46,18 @@ class CategoryController extends Controller
 
     public function export()
     {
-        $this->authorize('category-manage');
+        if (!auth()->user()->can('category-manage')) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+    
         return Excel::download(new CategoryExport, 'categories.xlsx');
     }
 
     public function import(Request $request)
     {
-        $this->authorize('category-manage');
+        if (! auth()->user()->can('category-manage')) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
 
         $request->validate(['file' => 'required|mimes:xlsx,xls']);
 

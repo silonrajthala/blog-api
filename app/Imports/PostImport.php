@@ -15,14 +15,21 @@ class PostImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
+            if (empty($row['title'])) {
+                continue;
+            }
+
             $author = User::firstOrCreate(
-                ['email' => $row['author_email']],
-                ['name' => $row['author_email'], 'password' => bcrypt('password')]
+                ['name' => $row['author']], 
+                [
+                    'email' => Str::slug($row['author']) . '@example.com',
+                    'password' => bcrypt('password')
+                ]
             );
 
             $category = Category::firstOrCreate(
-                ['name' => $row['category_name']],
-                ['slug' => Str::slug($row['category_name'])]
+                ['name' => $row['category']], 
+                ['slug' => Str::slug($row['category'])]
             );
 
             Post::create([
@@ -34,4 +41,3 @@ class PostImport implements ToCollection, WithHeadingRow
         }
     }
 }
-

@@ -325,4 +325,91 @@ None
 }
 ```
 
-## -- Import/Export
+
+## 13. Category Export
+
+**GET** `/api/categories-export`
+
+### Request Headers  
+ Authorization: Bearer {token}
+### Request Body
+None
+### Response (200 OK)
+On success, the server responds with the raw binary data of an Excel (`.xlsx`) file. The client should be configured to handle this response as a file download and save it.
+
+The default filename suggested by the server will be `categories.xlsx`.
+
+> **Note:** The response body is not JSON. Attempting to parse it as JSON will result in an error. Use your HTTP client's "Save Response to File" or "Download" feature to handle the output correctly.
+
+## 14. Category Import
+
+**POST** `/api/categories-import`
+
+### Request Headers  
+  Accept: application/json   
+ Authorization: Bearer {token}  
+ Content-Type: application/json
+### Request Body
+The request must be sent as `form-data`.
+
+| `file` | **File** | **Required.** The `.xlsx` or `.xls` file containing the categories to import. The file must include a header row as described below. |
+
+#### File Structure Example
+
+The first row of the Excel file **must** be a header row with the keys `name` and `slug`. The keys are case-insensitive.
+
+| name          | slug        |
+| :------------ | :---------- |
+| Electronics   | electronics |
+| New Laptops   | new-laptops |
+
+### Response (200 OK)
+```json
+{
+    "message": "Categories imported successfully"
+}
+```
+## 15. Category Export
+
+**GET** `/api/posts-export`
+
+### Request Headers  
+ Authorization: Bearer {token}
+### Request Body
+None
+### Response (200 OK)
+On success, the server responds with the raw binary data of an Excel (`.xlsx`) file. The client should be configured to handle this response as a file download and save it.
+
+The default filename suggested by the server will be `categories.xlsx`.
+
+> **Note:** The response body is not JSON. Attempting to parse it as JSON will result in an error. Use your HTTP client's "Save Response to File" or "Download" feature to handle the output correctly.
+
+## 16. Post Import
+
+**POST** `/api/posts-import`
+
+### Request Headers  
+  Accept: application/json   
+ Authorization: Bearer {token}  
+ Content-Type: application/json
+### Request Body
+The request must be sent as `form-data`.
+
+| `file` | **File** | **Required.** The `.xlsx` or `.xls` file containing the categories to import. The file must include a header row as described below. |
+
+### Example File Content
+
+| title                 | body                             | author         | category |
+| :-------------------- | :------------------------------- | :------------- | :------- |
+| Welcome to Laravel Blog | This is the first post in the system. | Editor         | Laravel  |
+| My New Post           | This is the content of the post.   | Silon Rajthala | Laravel  |
+| My New Second Post    | This is the content of the Second post. | Silon Rajthala | React    |
+
+> **Note:** Any empty rows in the file will be skipped automatically to prevent import errors.
+
+### Response (200 OK)
+```json
+{
+    "message": "Posts imported successfully"
+}
+```

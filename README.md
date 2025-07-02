@@ -88,4 +88,4 @@ php artisan serve
 
 ---
 
-# FOR DOCUMENT OF API CHECK ApiDocuments.md
+# For the full API documentation, please see the [ApiDocuments.md](./ApiDocuments.md) file.
